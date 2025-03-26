@@ -145,14 +145,22 @@ struct ContentView: View {
                     ZStack {
                         ForEach(Array(players.enumerated()), id: \.element.id) { index, player in
                             ZStack {
+                                // Player circle with overlay
                                 Circle()
                                     .fill(player.color)
                                     .frame(width: circleSize, height: circleSize)
-                                    .position(player.position)
+                                    .overlay(
+                                        Circle()
+                                            .stroke(Color.white, lineWidth: player.isSelected ? 8 : 0)
+                                            .blur(radius: player.isSelected ? 4 : 0)
+                                    )
+                                    .scaleEffect(player.isSelected ? 1.1 : 1.0)
                                     .opacity(player.isSelected ? 1 : 0.7)
                                     .rotationEffect(.degrees(player.rotation))
+                                    .position(player.position)
                                     .animation(.easeInOut(duration: 0.3), value: player.isSelected)
                                 
+                                // Player number
                                 Text("\(player.number)")
                                     .font(.system(size: 60, weight: .bold))
                                     .foregroundColor(.white)
@@ -232,16 +240,30 @@ struct ContentView: View {
             players[index].rotation = 0
         }
         
-        // Animate through players
+        // Total duration of 3 seconds
+        let totalDuration: TimeInterval = 3.0
+        let highlightDuration: TimeInterval = 0.2
+        
+        // Calculate how many highlights we can fit in 3 seconds
+        let numberOfHighlights = Int(totalDuration / highlightDuration)
+        
+        // Create an array of random indices for highlighting
+        var highlightIndices = (0..<numberOfHighlights).map { _ in
+            Int.random(in: 0..<players.count)
+        }
+        
+        // Animate through random players
         var currentIndex = 0
-        Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { timer in
-            if currentIndex < players.count {
-                // Deselect previous player
-                if currentIndex > 0 {
-                    players[currentIndex - 1].isSelected = false
+        Timer.scheduledTimer(withTimeInterval: highlightDuration, repeats: true) { timer in
+            if currentIndex < numberOfHighlights {
+                // Deselect all players first
+                for index in players.indices {
+                    players[index].isSelected = false
                 }
-                // Select current player
-                players[currentIndex].isSelected = true
+                
+                // Select random player
+                let randomIndex = highlightIndices[currentIndex]
+                players[randomIndex].isSelected = true
                 currentIndex += 1
             } else {
                 timer.invalidate()
