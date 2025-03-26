@@ -18,6 +18,10 @@ A fun and interactive iOS app that helps determine who goes first in board games
   - Animated selection sequence
   - Random winner selection
 - **Easy Reset**: Quick reset button to start over
+- **Professional Launch Screen**:
+  - Custom launch screen with app branding
+  - Smooth transition to main interface
+  - Optimized for all device sizes
 
 ## How to Use
 
@@ -41,6 +45,8 @@ A fun and interactive iOS app that helps determine who goes first in board games
 - Responsive design that works on all iOS devices
 - Smooth animations and transitions
 - Touch detection with collision avoidance
+- Custom launch screen implementation using Storyboard
+- Optimized asset loading and caching
 
 ## Requirements
 

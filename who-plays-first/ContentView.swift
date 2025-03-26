@@ -248,7 +248,7 @@ struct ContentView: View {
         let numberOfHighlights = Int(totalDuration / highlightDuration)
         
         // Create an array of random indices for highlighting
-        var highlightIndices = (0..<numberOfHighlights).map { _ in
+        let highlightIndices = (0..<numberOfHighlights).map { _ in
             Int.random(in: 0..<players.count)
         }
         
