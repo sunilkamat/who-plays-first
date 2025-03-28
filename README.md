@@ -2,9 +2,7 @@
 
 A fun and interactive iOS app that helps determine who goes first in board games using a touch-based interface. Instead of rolling dice or drawing cards, players place their fingers on the screen to create a dynamic and engaging selection process.
 
-## Note
-
-This application was generated using Cursor AI Code Editor with minimal manual intevention.
+> **Note**: This app was created using Cursor AI Code Editor with minimal manual intervention, demonstrating the power of AI-assisted development.
 
 ## Features
 
